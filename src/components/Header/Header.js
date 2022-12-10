@@ -31,7 +31,7 @@ function Header() {
           </Nav>
           <div className='ms-auto'>
             {
-              user?.email ?
+              user?.uid ?
               <>
               <Image title={user.displayName} className='rounded-circle'  style={{width:'60px'}} src={user.photoURL}></Image>
               <Button onClick={handleSignOut} className='ms-4'  variant="info">Log Out</Button>

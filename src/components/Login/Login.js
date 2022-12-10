@@ -7,7 +7,7 @@ import { authContex } from '../../Contexs/Contexs';
 
 const Login = () => {
 
-    const {sinInWithGoogle,signIn} = useContext(authContex)
+    const {sinInWithGoogle,signIn,sinInWithGithub} = useContext(authContex)
 
     const handleSubmit = (event) =>{
         event.preventDefault()
@@ -25,6 +25,17 @@ const Login = () => {
        
     }
 
+
+    const loginWithGithub = () =>{
+        sinInWithGithub()
+        .then(result => {
+            const user = result.user;
+            console.log(user)
+        })
+        .catch(e => console.error(e.message))
+    }
+
+
     const loginWithGoogle = () =>{
         sinInWithGoogle()
         .then(result => {
@@ -40,7 +51,7 @@ const Login = () => {
         <div className="row">
             <div className="col-4">
             <Button onClick={loginWithGoogle} variant="success" className='me-2'><FaGoogle/> Google</Button>
-            <Button variant="secondary"><FaGithub/> Github</Button>
+            <Button onClick={loginWithGithub} variant="secondary"><FaGithub/> Github</Button>
             </div>
             <div className="col-8">
             <Form onSubmit={handleSubmit} className=' mx-auto'>
