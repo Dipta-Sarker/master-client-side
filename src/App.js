@@ -5,6 +5,7 @@ import Main from './layout/Main/Main';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import Courses from './components/Courses/Courses';
+import CourseDetails from './components/CourseDetails/CourseDetails';
 
 function App() {
 
@@ -15,7 +16,8 @@ const router = createBrowserRouter([
     {path:'/register', element:<Register></Register>},
     {path:'/courses', 
     loader: () => fetch('http://localhost:5000/courses'),
-    element:<Courses></Courses>}
+    element:<Courses></Courses>},
+    {path:'/course/details/:id' , element: <CourseDetails></CourseDetails>}
 
 
   ]},
