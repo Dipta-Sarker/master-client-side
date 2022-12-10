@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { FaGoogle,FaGithub } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import { authContex } from '../../Contexs/Contexs';
 
 const Login = () => {
+
+    const {sinInWithGoogle} = useContext(authContex)
 
     const handleSubmit = (event) =>{
         event.preventDefault()
@@ -14,11 +17,21 @@ const Login = () => {
         console.log(email,password)
     }
 
+    const loginWithGoogle = () =>{
+        sinInWithGoogle()
+        .then(result => {
+            const user = result.user;
+            console.log(user)
+        })
+
+        .catch(e => console.error(e.message))
+    }
+
     return (
         <div className="container mt-5">
         <div className="row">
             <div className="col-4">
-            <Button variant="success" className='me-2'><FaGoogle/> Google</Button>
+            <Button onClick={loginWithGoogle} variant="success" className='me-2'><FaGoogle/> Google</Button>
             <Button variant="secondary"><FaGithub/> Github</Button>
             </div>
             <div className="col-8">
