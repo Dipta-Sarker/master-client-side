@@ -1,17 +1,20 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { Link, useLoaderData } from 'react-router-dom';
 const CourseDetails = () => {
+    const course = useLoaderData()
+    const {id, title,img,details} = course;
     return (
-        <Card className="text-center mt-5">
+        <Card className="text-center my-5 w-50 mx-auto">
             <Card.Header>Featured</Card.Header>
-            <Card.Img variant="top" src="holder.js/100px180" />
+            <Card.Img  variant="top" src={img} />
             <Card.Body>
-            <Card.Title>Special title treatment</Card.Title>
+            <Card.Title>{title}</Card.Title>
             <Card.Text>
-                With supporting text below as a natural lead-in to additional content.
+                {details}
             </Card.Text>
-            <Button variant="primary">Go somewhere</Button>
+           <Link to={`/checkout/${id}`}><Button variant="primary">CheckOut</Button></Link>
             </Card.Body>
             <Card.Footer className="text-muted">2 days ago</Card.Footer>
       </Card>

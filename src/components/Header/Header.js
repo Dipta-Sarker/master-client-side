@@ -9,7 +9,7 @@ function Header() {
     <>
       <Navbar bg="primary" variant="dark">
         <Container>
-          <Navbar.Brand  href="#home">Master</Navbar.Brand>
+         <Link to='/'><Navbar.Brand>Master</Navbar.Brand></Link>
           <Nav className="me-auto">
             
             <Nav.Link><Link className='text-white text-decoration-none' to='/courses'>Courses</Link></Nav.Link>
