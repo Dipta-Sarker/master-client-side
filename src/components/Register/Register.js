@@ -1,19 +1,40 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { authContex } from '../../Contexs/Contexs';
 const Register = () => {
+
+const {createAccount,updateProfileUser} = useContext(authContex)
+
 
     const handletoSubmit = (event) =>{
         event.preventDefault()
-        const from = event.target;
-        const name = from.name.value;
-        const photoUrl = from.photoUrl.value;
-        const email = from.email.value;
-        const password = from.password.value;
+        const form = event.target;
+        const name = form.name.value;
+        const photoUrl = form.photoUrl.value;
+        const email = form.email.value;
+        const password = form.password.value;
+
+
+        createAccount(email,password)
+        .then(result =>{
+          const user = result.user;
+          update(name,photoUrl)
+          console.log(user)
+        })
+        .catch(e => console.error(e.message))
+        form.reset()
 
         console.log(name, photoUrl,email,password)
     }
 
+    const update = (name,photoUrl) =>{
+      const profile = {displayName:name,photoURL:photoUrl}
+
+      updateProfileUser(profile)
+      .then(result =>{})
+      .catch(error =>console.error(error.message))
+    }
 
     return (
         <Form onSubmit={handletoSubmit} className='w-50 mx-auto mt-5'>

@@ -7,14 +7,22 @@ import { authContex } from '../../Contexs/Contexs';
 
 const Login = () => {
 
-    const {sinInWithGoogle} = useContext(authContex)
+    const {sinInWithGoogle,signIn} = useContext(authContex)
 
     const handleSubmit = (event) =>{
         event.preventDefault()
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
+        signIn(email,password)
+        .then(result => {
+            const user = result.user;
+            console.log(user)
+            event.target.reset()
+        })
+        .error(e =>console.error(e.message))
         console.log(email,password)
+       
     }
 
     const loginWithGoogle = () =>{

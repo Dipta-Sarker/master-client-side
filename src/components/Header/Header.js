@@ -31,10 +31,10 @@ function Header() {
           </Nav>
           <div className='ms-auto'>
             {
-              user?.displayName ?
+              user?.email ?
               <>
-              <Image title={user.displayName} className='rounded-circle'  style={{width:'25%'}} src={user.photoURL}></Image>
-              <Button onClick={handleSignOut} className='ms-4' style={{width:'43%',padding:'5px'}} variant="info">Log Out</Button>
+              <Image title={user.displayName} className='rounded-circle'  style={{width:'60px'}} src={user.photoURL}></Image>
+              <Button onClick={handleSignOut} className='ms-4'  variant="info">Log Out</Button>
               </>:
               <Link to='/login'><Button>Login</Button></Link>
             }
