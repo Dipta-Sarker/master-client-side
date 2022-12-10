@@ -22,7 +22,9 @@ const router = createBrowserRouter([
     loader: ({params}) => fetch(`http://localhost:5000/course/details/${params.id}`),
     element: <CourseDetails></CourseDetails>},
 
-    {path:'/checkout/:id', element:<Checkout></Checkout>}
+    {path:'/checkout/:id',
+    loader: ({params}) => fetch(`http://localhost:5000/course/details/${params.id}`),
+    element:<Checkout></Checkout>}
   ]},
   {path:'/*', element: <h1>Error 404 . NO Components !!</h1>}
 ])

@@ -13,10 +13,7 @@ const Course = ({course}) => {
                 <Card.Img  style={{height:'171px'}} variant="top" src={img} />
                 <Card.Body>
                 <Card.Title>{title}</Card.Title>
-                {/* <Card.Text>
-                    Some quick example text to build on the card title and make up the
-                    bulk of the card's content.
-                </Card.Text> */}
+                
                 <Link to={`/course/details/${id}`}><Button variant="primary">CourseDetails</Button></Link>
                 </Card.Body>
             </Card>
