@@ -2,10 +2,16 @@ import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { FaGoogle,FaGithub } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { authContex } from '../../Contexs/Contexs';
 
 const Login = () => {
+
+    const navigate = useNavigate()
+    const location = useLocation()
+
+    const from = location.state?.from?.pathname || "/";
+
     const [error, setError] = useState(null)
 
     const {sinInWithGoogle,signIn,sinInWithGithub} = useContext(authContex)
@@ -20,6 +26,7 @@ const Login = () => {
             const user = result.user;
             console.log(user)
             event.target.reset()
+            navigate(from,{replace:true})
         })
         .catch(e =>{
             const error = e.message;

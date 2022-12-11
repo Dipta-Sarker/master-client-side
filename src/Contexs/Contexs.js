@@ -10,6 +10,7 @@ const auth = getAuth(app);
 const Contexs = (props) => {
  
 const [user, setUser] = useState()
+const [loadding, setLoadding] = useState(true)
 
 
 const createAccount = (email,password) =>{
@@ -17,6 +18,7 @@ const createAccount = (email,password) =>{
 }
 
 const signIn = (email,password) =>{
+    setLoadding(false)
     return signInWithEmailAndPassword(auth, email, password)
 }
 
@@ -26,14 +28,17 @@ const sinInWithGoogle = () =>{
 }
 
 const sinInWithGithub = () =>{
+    setLoadding(false)
    return signInWithPopup(auth, githubProvider)
 }
 
 const logOut = () =>{
+    setLoadding(false)
  return   signOut(auth)
 }
 
 const updateProfileUser =(profile) =>{
+    setLoadding(false)
     return updateProfile(auth.currentUser,profile)
 } 
 
@@ -41,6 +46,7 @@ const updateProfileUser =(profile) =>{
 useEffect(() =>{
   const unsubscribs =  onAuthStateChanged(auth, (currentUser) => {
         setUser(currentUser)
+        setLoadding(false)
     })
 
     return () => unsubscribs;
@@ -49,7 +55,7 @@ useEffect(() =>{
 
 
 
-const authInfo ={sinInWithGithub,user,sinInWithGoogle,logOut,signIn,createAccount,updateProfileUser}
+const authInfo ={sinInWithGithub,user,loadding,sinInWithGoogle,logOut,signIn,createAccount,updateProfileUser}
 
     return (
         <authContex.Provider value={authInfo}>

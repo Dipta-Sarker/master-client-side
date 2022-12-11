@@ -8,6 +8,7 @@ import Courses from './components/Courses/Courses';
 import CourseDetails from './components/CourseDetails/CourseDetails';
 import Checkout from './components/Checkout/Checkout';
 import Blog from './components/Blog/Blog';
+import PrivateRouter from './PrivateRouter/PrivateRouter';
 
 function App() {
 
@@ -25,7 +26,7 @@ const router = createBrowserRouter([
 
     {path:'/checkout/:id',
     loader: ({params}) => fetch(`http://localhost:5000/course/details/${params.id}`),
-    element:<Checkout></Checkout>},
+    element:<PrivateRouter><Checkout></Checkout></PrivateRouter>},
     {path:'/blog' , element:<Blog></Blog>}
   ]},
   {path:'/*', element: <h1>Error 404 . NO Components !!</h1>}
