@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { FaGoogle,FaGithub } from "react-icons/fa";
@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { authContex } from '../../Contexs/Contexs';
 
 const Login = () => {
+    const [error, setError] = useState(null)
 
     const {sinInWithGoogle,signIn,sinInWithGithub} = useContext(authContex)
 
@@ -20,7 +21,11 @@ const Login = () => {
             console.log(user)
             event.target.reset()
         })
-        .error(e =>console.error(e.message))
+        .catch(e =>{
+            const error = e.message;
+            console.log(error)
+            setError(error)
+        })
         console.log(email,password)
        
     }
@@ -32,7 +37,10 @@ const Login = () => {
             const user = result.user;
             console.log(user)
         })
-        .catch(e => console.error(e.message))
+        .catch(e =>{
+            const error = e.message;
+            setError(error)
+        })
     }
 
 
@@ -43,7 +51,10 @@ const Login = () => {
             console.log(user)
         })
 
-        .catch(e => console.error(e.message))
+        .catch(e => {
+            const error = e.message;
+            setError(error)
+        })
     }
 
     return (
@@ -71,6 +82,7 @@ const Login = () => {
             </Form>
             <p className='mt-3 text-center'>New to Master ? <Link to='/register'>Register</Link></p>
             </div>
+            <h4 className='text-center text-danger'>{error}</h4>
         </div>
         </div>
     );
