@@ -9,23 +9,25 @@ import CourseDetails from './components/CourseDetails/CourseDetails';
 import Checkout from './components/Checkout/Checkout';
 import Blog from './components/Blog/Blog';
 import PrivateRouter from './PrivateRouter/PrivateRouter';
+import Home from './components/Home/Home';
 
 function App() {
 
 const router = createBrowserRouter([
   {path:'/', element: <Main></Main>,children:[
 
+    {path:'/', element:<Home></Home>},
     {path:'/login', element:<Login></Login>},
     {path:'/register', element:<Register></Register>},
     {path:'/courses', 
-    loader: () => fetch('http://localhost:5000/courses'),
+    loader: () => fetch('https://master-server.vercel.app/courses'),
     element:<Courses></Courses>},
     {path:'/course/details/:id' ,
-    loader: ({params}) => fetch(`http://localhost:5000/course/details/${params.id}`),
+    loader: ({params}) => fetch(`https://master-server.vercel.app/course/details/${params.id}`),
     element: <CourseDetails></CourseDetails>},
 
     {path:'/checkout/:id',
-    loader: ({params}) => fetch(`http://localhost:5000/course/details/${params.id}`),
+    loader: ({params}) => fetch(`https://master-server.vercel.app/course/details/${params.id}`),
     element:<PrivateRouter><Checkout></Checkout></PrivateRouter>},
     {path:'/blog' , element:<Blog></Blog>}
   ]},

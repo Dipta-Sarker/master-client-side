@@ -43,6 +43,7 @@ const Login = () => {
         .then(result => {
             const user = result.user;
             console.log(user)
+            navigate(from,{replace:true})
         })
         .catch(e =>{
             const error = e.message;
@@ -56,6 +57,7 @@ const Login = () => {
         .then(result => {
             const user = result.user;
             console.log(user)
+            navigate(from,{replace:true})
         })
 
         .catch(e => {
